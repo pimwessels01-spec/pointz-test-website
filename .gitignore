@@ -1,0 +1,15 @@
+# Dev tools (niet nodig op Vercel)
+serve.mjs
+screenshot.mjs
+take_screenshot.py
+temporary screenshots/
+node_modules/
+
+# Interne Claude bestanden
+CLAUDE.md
+SKILL.md
+
+# Oude backups
+cts-backup.html
+Creative\ Tent\ Systems\ 2.pdf
+Creative\ Tent\ Systems\ |\ Maatwerk\ stretchtenten\ specialist.png

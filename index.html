@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pointz Stretchtent | Maatwerk stretchtenten</title>
+
+  <script>const _s=new URLSearchParams(location.search).get('s');if(_s)document.addEventListener('DOMContentLoaded',()=>window.scrollTo(0,+_s));</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bruin:      #2C1A0E;
+      --bruin-mid:  #4A2E1A;
+      --goud:       #C9A046;
+      --goud-licht: #DDB96A;
+      --goud-donker:#A07832;
+      --zand:       #F2E8D4;
+      --zand-warm:  #E8D8B8;
+      --zand-diep:  #D9C49A;
+      --terra:      #C47B43;
+      --wit:        #FEFAF4;
+      --tekst:      #2C1A0E;
+      --tekst-mid:  #6B4C2A;
+
+      --gap-xs: 0.5rem;
+      --gap-s:  1rem;
+      --gap-m:  2rem;
+      --gap-l:  4rem;
+      --gap-xl: 7rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.875rem, 0.84rem + 0.18vw, 1.0625rem);
+      line-height: 1.75;
+      color: var(--tekst);
+      background: var(--wit);
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN TEXTURE ──────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.45;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      height: 76px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 clamp(1.5rem, 4vw, 3.5rem);
+      background: rgba(44, 26, 14, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 160, 70, 0.25);
+      transition: background 0.4s ease;
+    }
+
+    .nav-logo {
+      height: 44px;
+      display: block;
+      filter: brightness(1.05);
+      justify-self: start;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--zand-warm);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--goud-licht);
+      border-bottom-color: var(--goud);
+    }
+
+    .nav-cta-wrap {
+      justify-self: end;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bruin);
+      background: var(--goud);
+      padding: 0.6rem 1.5rem;
+      border-radius: 2px;
+      text-decoration: none;
+      line-height: 1;
+      transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+      box-shadow: 0 2px 12px rgba(201,160,70,0.25);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--goud-licht);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 18px rgba(201,160,70,0.35);
+    }
+
+    .nav-cta:active { transform: translateY(0); }
+
+    /* hamburger mobile */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      justify-self: end;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--zand-warm);
+      border-radius: 2px;
+      transition: transform 0.3s ease;
+    }
+
+    @media (max-width: 820px) {
+      .nav { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-cta-wrap { display: none; }
+    }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      transform: scale(1.04);
+      animation: hero-zoom 12s ease-out forwards;
+    }
+
+    @keyframes hero-zoom {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1.00); }
+    }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(44,26,14,0.90) 0%, rgba(44,26,14,0.35) 55%, rgba(44,26,14,0.10) 100%),
+        linear-gradient(to right, rgba(44,26,14,0.30) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 7vw, 7rem);
+      padding-bottom: clamp(4rem, 8vh, 7rem);
+      max-width: 780px;
+      animation: fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--goud-licht);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--goud);
+    }
+
+    .hero h1 {
+      font-family: 'Caladea', serif;
+      font-weight: 700;
+      font-size: clamp(2.5rem, 6.5vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #FEFAF4;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--goud-licht);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+      font-weight: 300;
+      color: rgba(242, 232, 212, 0.85);
+      max-width: 520px;
+      margin-bottom: 2.25rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 1.25rem 2rem;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--bruin);
+      background: var(--goud);
+      padding: 0.875rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+      box-shadow: 0 4px 20px rgba(201,160,70,0.30), 0 1px 4px rgba(0,0,0,0.20);
+    }
+
+    .btn-primary:hover {
+      background: var(--goud-licht);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,160,70,0.40), 0 2px 6px rgba(0,0,0,0.20);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .hero-tel {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--zand);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .hero-tel:hover { color: var(--goud-licht); }
+
+    .hero-tel-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(201,160,70,0.18);
+      border: 1px solid rgba(201,160,70,0.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .hero-scroll {
+      position: absolute; bottom: 2rem; right: clamp(1.5rem, 5vw, 4rem);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(242,232,212,0.5);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: fade-up 1s ease 1.2s both;
+    }
+
+    .hero-scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(201,160,70,0.5), transparent);
+      animation: scroll-line 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-line {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(0.7); }
+    }
+
+    /* ── SECTION SHARED ─────────────────────────────────────── */
+    .section {
+      padding: var(--gap-xl) clamp(1.5rem, 7vw, 7rem);
+    }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--goud-donker);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--goud);
+    }
+
+    .section-heading {
+      font-family: 'Caladea', serif;
+      font-weight: 700;
+      font-size: clamp(1.875rem, 4vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--bruin);
+    }
+
+    .section-heading em {
+      font-style: italic;
+      color: var(--terra);
+    }
+
+    .section-intro {
+      margin-top: 1rem;
+      font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+      font-weight: 300;
+      color: var(--tekst-mid);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    .divider {
+      width: 48px; height: 2px;
+      background: linear-gradient(to right, var(--goud), var(--goud-donker));
+      margin: 1.25rem 0 2.5rem;
+      border-radius: 1px;
+    }
+
+    /* ── CONTACT ────────────────────────────────────────────── */
+    .contact-section {
+      background: var(--zand);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,160,70,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-l);
+      align-items: start;
+    }
+
+    @media (max-width: 840px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-info {
+      padding-top: 0.5rem;
+    }
+
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    .contact-detail-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--bruin);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .contact-detail-icon svg { color: var(--goud); }
+
+    .contact-detail-text {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+
+    .contact-detail-text strong {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--goud-donker);
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-detail-text a {
+      color: var(--bruin);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .contact-detail-text a:hover { color: var(--terra); }
+
+    /* form */
+    .form-card {
+      background: var(--wit);
+      padding: clamp(2rem, 4vw, 3rem);
+      border-radius: 4px;
+      box-shadow:
+        0 2px 4px rgba(44,26,14,0.06),
+        0 8px 24px rgba(44,26,14,0.08),
+        0 24px 56px rgba(44,26,14,0.06);
+      border: 1px solid rgba(201,160,70,0.15);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 540px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tekst-mid);
+      margin-bottom: 0.45rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--bruin);
+      background: var(--zand);
+      border: 1.5px solid var(--zand-diep);
+      border-radius: 2px;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--goud);
+      box-shadow: 0 0 0 3px rgba(201,160,70,0.15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.6;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--zand-diep);
+      font-weight: 300;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .form-note {
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      color: var(--tekst-mid);
+      text-align: center;
+      font-weight: 300;
+    }
+
+    /* ── MATEN & PRIJZEN ────────────────────────────────────── */
+    .prijzen-section {
+      background: var(--bruin);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prijzen-section::before {
+      content: '';
+      position: absolute;
+      bottom: -200px; left: -100px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,160,70,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .prijzen-section .section-label { color: var(--goud-licht); }
+    .prijzen-section .section-label::before { background: var(--goud); }
+    .prijzen-section .section-heading { color: var(--zand); }
+    .prijzen-section .section-heading em { color: var(--goud-licht); }
+    .prijzen-section .section-intro { color: rgba(232,216,184,0.70); }
+    .prijzen-section .divider { background: linear-gradient(to right, var(--goud), transparent); }
+
+    .prijzen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .prijs-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,160,70,0.20);
+      border-radius: 4px;
+      padding: 2rem 1.75rem;
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .prijs-card:hover {
+      background: rgba(201,160,70,0.08);
+      border-color: rgba(201,160,70,0.45);
+      transform: translateY(-4px);
+    }
+
+    .prijs-card-maat {
+      font-family: 'Caladea', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--goud-licht);
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .prijs-card-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(232,216,184,0.5);
+      margin-top: 0.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .prijs-card-divider {
+      width: 32px; height: 1px;
+      background: rgba(201,160,70,0.35);
+      margin-bottom: 1.25rem;
+    }
+
+    .prijs-card-detail {
+      display: flex; justify-content: space-between;
+      font-size: 0.875rem;
+      color: rgba(242,232,212,0.75);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .prijs-card-detail:last-of-type { border-bottom: none; }
+
+    .prijs-card-detail strong {
+      color: var(--zand-warm);
+      font-weight: 500;
+    }
+
+    .prijs-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--goud-licht);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,160,70,0.35);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .prijs-card-cta:hover {
+      color: var(--goud);
+      border-color: var(--goud);
+    }
+
+    .prijs-opmerking {
+      margin-top: 2.5rem;
+      padding: 1.25rem 1.75rem;
+      background: rgba(201,160,70,0.08);
+      border-left: 3px solid var(--goud);
+      border-radius: 0 2px 2px 0;
+      font-size: 0.875rem;
+      color: rgba(232,216,184,0.75);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── GALERIJ ────────────────────────────────────────────── */
+    .galerij-section {
+      background: var(--wit);
+      padding-bottom: 0;
+    }
+
+    .galerij-section .section-label,
+    .galerij-section .section-heading,
+    .galerij-section .divider,
+    .galerij-section .section-intro {
+      padding-left: 0;
+    }
+
+    .galerij-strip-wrap {
+      position: relative;
+      margin-top: 3rem;
+      margin-left: calc(-1 * clamp(1.5rem, 7vw, 7rem));
+      margin-right: calc(-1 * clamp(1.5rem, 7vw, 7rem));
+    }
+
+    .galerij-strip {
+      display: flex;
+      gap: 0.625rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+      padding: 0 clamp(1.5rem, 7vw, 7rem);
+      padding-bottom: 0;
+    }
+
+    .galerij-strip::-webkit-scrollbar { display: none; }
+    .galerij-strip.dragging { cursor: grabbing; }
+
+    .galerij-item {
+      flex: 0 0 auto;
+      height: 380px;
+      scroll-snap-align: start;
+      overflow: hidden;
+      border-radius: 3px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .galerij-item img {
+      height: 100%;
+      width: auto;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+      filter: saturate(0.88) brightness(0.93);
+    }
+
+    .galerij-item:hover img {
+      transform: scale(1.04);
+      filter: saturate(1.05) brightness(1);
+    }
+
+    .galerij-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(44,26,14,0.5) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .galerij-item:hover::after { opacity: 1; }
+
+    /* fade edges */
+    .galerij-strip-wrap::before,
+    .galerij-strip-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: clamp(2rem, 5vw, 4rem);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .galerij-strip-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--wit), transparent);
+    }
+
+    .galerij-strip-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--wit), transparent);
+    }
+
+    /* scroll arrows */
+    .galerij-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bruin);
+      border: 1px solid rgba(201,160,70,0.35);
+      color: var(--goud-licht);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .galerij-arrow:hover {
+      background: var(--bruin-mid);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 6px 22px rgba(0,0,0,0.3);
+    }
+
+    .galerij-arrow-left  { left: 0.75rem; }
+    .galerij-arrow-right { right: 0.75rem; }
+
+    .galerij-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 2rem 0 var(--gap-xl);
+    }
+
+    .galerij-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--zand-diep);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .galerij-dot.active {
+      background: var(--goud);
+      transform: scale(1.4);
+    }
+
+    /* lightbox */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 900;
+      background: rgba(20,10,4,0.94);
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      color: rgba(242,232,212,0.7);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover { color: var(--goud-licht); }
+
+    /* ── USP STRIP ───────────────────────────────────────────── */
+    .usp-strip {
+      background: var(--zand-warm);
+      border-top: 1px solid rgba(201,160,70,0.25);
+      border-bottom: 1px solid rgba(201,160,70,0.25);
+      padding: 2.5rem clamp(1.5rem, 7vw, 7rem);
+    }
+
+    .usp-list {
+      display: flex; flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      list-style: none;
+      justify-content: center;
+    }
+
+    .usp-list li {
+      display: flex; align-items: center; gap: 0.625rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--bruin);
+    }
+
+    .usp-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--goud);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--bruin);
+      padding: 3.5rem clamp(1.5rem, 7vw, 7rem) 2rem;
+      border-top: 1px solid rgba(201,160,70,0.20);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .footer-logo {
+      height: 48px;
+      margin-bottom: 1rem;
+      filter: brightness(1.1) saturate(0.9);
+    }
+
+    .footer-desc {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: rgba(232,216,184,0.6);
+      line-height: 1.7;
+      max-width: 320px;
+    }
+
+    .footer-col-title {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--goud);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: rgba(232,216,184,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--goud-licht); }
+
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.75rem;
+      font-size: 0.75rem;
+      color: rgba(232,216,184,0.35);
+    }
+
+    /* ── SCROLL ANIMATIONS ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ─────────────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="#home" aria-label="Pointz Stretchtent home">
+      <img src="/thema/Logo%20Pointz.png" alt="Pointz Stretchtent" class="nav-logo">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#contact">Offerte aanvragen</a></li>
+      <li><a href="#maten">Tentmaten</a></li>
+      <li><a href="#galerij">Galerij</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="#contact" class="nav-cta">Direct contact</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── HERO ────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <img
+      src="/fotos/DJ-Wedding-279-1095x730.jpg"
+      alt="Pointz stretchtent bij een bruiloft"
+      class="hero-img"
+      loading="eager"
+    >
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <p class="hero-tag">Maatwerk stretchtenten</p>
+      <h1>Jouw feest,<br><em>onze tent.</em></h1>
+      <p class="hero-sub">
+        Van intieme bruiloften tot grote feesten — Pointz levert prachtige stretchtenten op elke locatie. Warm, authentiek en volledig op maat.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          Vraag een offerte aan
+        </a>
+        <a href="tel:0654676950" class="hero-tel">
+          <span class="hero-tel-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.91 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.82 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17l.002-.08z"/></svg>
+          </span>
+          06 54 67 69 50
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── USP STRIP ────────────────────────────────────────── -->
+  <div class="usp-strip">
+    <ul class="usp-list">
+      <li>Op maat voor elk evenement</li>
+      <li>Meer dan 15 jaar ervaring</li>
+      <li>Diverse tentmaten beschikbaar</li>
+      <li>Montage inclusief</li>
+      <li>Heel Nederland</li>
+    </ul>
+  </div>
+
+  <!-- ── CONTACT ───────────────────────────────────────────── -->
+  <section class="section contact-section" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label reveal">Snel contact</p>
+        <h2 class="section-heading reveal reveal-delay-1">Offerte aanvragen<br>is <em>simpel</em></h2>
+        <div class="divider reveal reveal-delay-2"></div>
+        <p class="section-intro reveal reveal-delay-2">
+          Vul het formulier in en wij nemen snel contact op. Of bel ons direct — we helpen je graag met het vinden van de perfecte tent voor jouw dag.
+        </p>
+
+        <div class="contact-detail reveal reveal-delay-3">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.91 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.82 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17l.002-.08z"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Telefoon</strong>
+            <a href="tel:0654676950">06 54 67 69 50</a>
+          </div>
+        </div>
+
+        <div class="contact-detail reveal reveal-delay-3">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>E-mail</strong>
+            <a href="mailto:info@stretch-tent.nl">info@stretch-tent.nl</a><br>
+            <a href="mailto:paul.wessels@stretch-tents.nl">paul.wessels@stretch-tents.nl</a>
+          </div>
+        </div>
+
+        <div class="contact-detail reveal reveal-delay-4">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Reactietijd</strong>
+            Binnen 1 werkdag
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal reveal-delay-1">
+        <form id="contactForm" action="https://formspree.io/f/JOUW_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="naam">Naam *</label>
+              <input type="text" id="naam" name="naam" placeholder="Jan de Vries" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mailadres *</label>
+              <input type="email" id="email" name="email" placeholder="jan@voorbeeld.nl" required autocomplete="email">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefoon">Telefoonnummer</label>
+              <input type="tel" id="telefoon" name="telefoon" placeholder="06 12 34 56 78" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="datum">Gewenste datum</label>
+              <input type="date" id="datum" name="datum">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="personen">Aantal personen</label>
+              <input type="number" id="personen" name="personen" placeholder="bv. 80" min="10" max="1000">
+            </div>
+            <div class="form-group">
+              <label for="type">Type evenement</label>
+              <select id="type" name="type">
+                <option value="">Selecteer type</option>
+                <option value="bruiloft">Bruiloft</option>
+                <option value="verjaardag">Verjaardag / jubileum</option>
+                <option value="bedrijf">Bedrijfsevenement</option>
+                <option value="festival">Festival / markt</option>
+                <option value="anders">Anders</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bericht">Aanvullende informatie</label>
+            <textarea id="bericht" name="bericht" placeholder="Vertel ons meer over je evenement, locatie of wensen…"></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Verstuur aanvraag
+          </button>
+          <p class="form-note">We reageren doorgaans binnen één werkdag.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MATEN & HUURPRIJZEN ───────────────────────────────── -->
+  <section class="section prijzen-section" id="maten">
+    <p class="section-label reveal">Tentmaten & huurprijzen</p>
+    <h2 class="section-heading reveal reveal-delay-1">De juiste tent<br>voor elk <em>evenement</em></h2>
+    <div class="divider reveal reveal-delay-2"></div>
+    <p class="section-intro reveal reveal-delay-2">
+      Onze stretchtenten zijn beschikbaar in diverse maten. Hieronder vind je een overzicht met indicatieprijzen. De exacte prijs hangt af van de locatie, het seizoen en de gewenste opstelling.
+    </p>
+
+    <div class="prijzen-grid">
+      <div class="prijs-card reveal">
+        <div class="prijs-card-maat">5 × 8 m</div>
+        <div class="prijs-card-label">Kleine opstelling</div>
+        <div class="prijs-card-divider"></div>
+        <div class="prijs-card-detail">
+          <span>Oppervlakte</span>
+          <strong>40 m²</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (staand)</span>
+          <strong>ca. 40</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (zittend)</span>
+          <strong>ca. 25</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Indicatieprijs</span>
+          <strong>Vanaf €650</strong>
+        </div>
+        <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
+      </div>
+
+      <div class="prijs-card reveal reveal-delay-1">
+        <div class="prijs-card-maat">6 × 12 m</div>
+        <div class="prijs-card-label">Middelgrote opstelling</div>
+        <div class="prijs-card-divider"></div>
+        <div class="prijs-card-detail">
+          <span>Oppervlakte</span>
+          <strong>72 m²</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (staand)</span>
+          <strong>ca. 80</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (zittend)</span>
+          <strong>ca. 50</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Indicatieprijs</span>
+          <strong>Vanaf €1.050</strong>
+        </div>
+        <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
+      </div>
+
+      <div class="prijs-card reveal reveal-delay-2">
+        <div class="prijs-card-maat">8 × 15 m</div>
+        <div class="prijs-card-label">Grote opstelling</div>
+        <div class="prijs-card-divider"></div>
+        <div class="prijs-card-detail">
+          <span>Oppervlakte</span>
+          <strong>120 m²</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (staand)</span>
+          <strong>ca. 140</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (zittend)</span>
+          <strong>ca. 90</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Indicatieprijs</span>
+          <strong>Vanaf €1.650</strong>
+        </div>
+        <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
+      </div>
+
+      <div class="prijs-card reveal reveal-delay-3">
+        <div class="prijs-card-maat">10 × 20 m</div>
+        <div class="prijs-card-label">Extra grote opstelling</div>
+        <div class="prijs-card-divider"></div>
+        <div class="prijs-card-detail">
+          <span>Oppervlakte</span>
+          <strong>200 m²</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (staand)</span>
+          <strong>ca. 230</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Max. personen (zittend)</span>
+          <strong>ca. 150</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Indicatieprijs</span>
+          <strong>Op aanvraag</strong>
+        </div>
+        <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
+      </div>
+
+      <div class="prijs-card reveal reveal-delay-4" style="grid-column: span 1;">
+        <div class="prijs-card-maat">Maatwerk</div>
+        <div class="prijs-card-label">Volledig op maat</div>
+        <div class="prijs-card-divider"></div>
+        <div class="prijs-card-detail">
+          <span>Combinaties mogelijk</span>
+          <strong>Ja</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Bijzondere locaties</span>
+          <strong>Ja</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Accessoires huurbaar</span>
+          <strong>Ja</strong>
+        </div>
+        <div class="prijs-card-detail">
+          <span>Indicatieprijs</span>
+          <strong>Op aanvraag</strong>
+        </div>
+        <a href="#contact" class="prijs-card-cta">Neem contact op →</a>
+      </div>
+    </div>
+
+    <div class="prijs-opmerking reveal">
+      * Alle prijzen zijn indicatief en excl. btw. De definitieve prijs is afhankelijk van locatie, datum, benodigde opstelling en eventuele extra's. Vraag vrijblijvend een offerte aan voor een exacte prijsopgave.
+    </div>
+  </section>
+
+  <!-- ── GALERIJ ───────────────────────────────────────────── -->
+  <section class="section galerij-section" id="galerij">
+    <p class="section-label reveal">Sfeerimpressie</p>
+    <h2 class="section-heading reveal reveal-delay-1">Tenten in <em>elk</em> setting</h2>
+    <div class="divider reveal reveal-delay-2"></div>
+    <p class="section-intro reveal reveal-delay-2">
+      Van romantische bruiloften in het bos tot professionele bedrijfsevenementen — sleep of scroll om door de galerij te bladeren.
+    </p>
+
+    <div class="galerij-strip-wrap reveal">
+      <button class="galerij-arrow galerij-arrow-left" id="arrowLeft" aria-label="Vorige foto">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="galerij-arrow galerij-arrow-right" id="arrowRight" aria-label="Volgende foto">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+      <div class="galerij-strip" id="galerijStrip">
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/DJ-Wedding-279-1095x730.jpg" alt="Stretchtent bruiloft met waterreflectie" loading="lazy">
+        </div>
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/122383216_215432179929634_7901135346800764973_n.jpg" alt="Stretchtent in bos" loading="lazy">
+        </div>
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/305701773_642048297268018_1403166546374715388_n.jpg" alt="Stretchtent met decoratie" loading="lazy">
+        </div>
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/278378214_541324414007074_8364620911524647632_n.jpg" alt="Stretchtent intiem" loading="lazy">
+        </div>
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/bartimeus%2012.jpg" alt="Stretchtent Bartimeus locatie" loading="lazy">
+        </div>
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/280660100_561159992023516_335217310516019810_n.jpg" alt="Stretchtent evenement" loading="lazy">
+        </div>
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/IMG_2112.JPG" alt="Stretchtent festival" loading="lazy">
+        </div>
+        <div class="galerij-item" onclick="openLightbox(this)">
+          <img src="/fotos/bartimeus%2014.jpg" alt="Stretchtent locatie" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="galerij-dots" id="galerijDots">
+      <button class="galerij-dot active" data-idx="0"></button>
+      <button class="galerij-dot" data-idx="1"></button>
+      <button class="galerij-dot" data-idx="2"></button>
+      <button class="galerij-dot" data-idx="3"></button>
+      <button class="galerij-dot" data-idx="4"></button>
+      <button class="galerij-dot" data-idx="5"></button>
+      <button class="galerij-dot" data-idx="6"></button>
+      <button class="galerij-dot" data-idx="7"></button>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <img src="/thema/Logo%20Pointz.png" alt="Pointz Stretchtent" class="footer-logo">
+        <p class="footer-desc">
+          Pointz levert maatwerk stretchtenten voor elk type evenement. Warm, authentiek en volledig op maat — in heel Nederland.
+        </p>
+      </div>
+      <div>
+        <p class="footer-col-title">Navigatie</p>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#contact">Offerte aanvragen</a></li>
+          <li><a href="#maten">Tentmaten & prijzen</a></li>
+          <li><a href="#galerij">Galerij</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Contact</p>
+        <ul class="footer-links">
+          <li><a href="tel:0654676950">06 54 67 69 50</a></li>
+          <li><a href="mailto:info@stretch-tent.nl">info@stretch-tent.nl</a></li>
+          <li><a href="mailto:paul.wessels@stretch-tents.nl">paul.wessels@stretch-tents.nl</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Pointz Stretchtent · Alle rechten voorbehouden</span>
+      <span>KvK op aanvraag</span>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Sluiten">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <script>
+    /* ── Scroll reveal ─── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── Galerij strip ─── */
+    const strip = document.getElementById('galerijStrip');
+    const dots  = document.querySelectorAll('.galerij-dot');
+
+    /* Arrow scroll */
+    const SCROLL_AMT = 420;
+    document.getElementById('arrowLeft').addEventListener('click', () => {
+      strip.scrollBy({ left: -SCROLL_AMT, behavior: 'smooth' });
+    });
+    document.getElementById('arrowRight').addEventListener('click', () => {
+      strip.scrollBy({ left: SCROLL_AMT, behavior: 'smooth' });
+    });
+
+    /* Dot sync */
+    const items = strip.querySelectorAll('.galerij-item');
+    const itemObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = [...items].indexOf(e.target);
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+      });
+    }, { root: strip, threshold: 0.55 });
+    items.forEach(el => itemObserver.observe(el));
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = +dot.dataset.idx;
+        items[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
+
+    /* Drag to scroll */
+    let isDown = false, startX = 0, scrollLeft = 0;
+    strip.addEventListener('mousedown', e => {
+      isDown = true;
+      strip.classList.add('dragging');
+      startX = e.pageX - strip.offsetLeft;
+      scrollLeft = strip.scrollLeft;
+    });
+    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('dragging'); });
+    strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('dragging'); });
+    strip.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - strip.offsetLeft;
+      strip.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+
+    /* Lightbox ─── */
+    function openLightbox(el) {
+      if (strip.classList.contains('dragging')) return;
+      const img = el.querySelector('img');
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxImg').alt = img.alt;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+    });
+
+    /* ── Form ─── */
+    function handleSubmit(e) {
+      const formId = e.target.action.includes('JOUW_FORM_ID');
+      if (formId) {
+        e.preventDefault();
+        alert('Formulier nog niet gekoppeld. Vervang JOUW_FORM_ID in de HTML met je Formspree ID.');
+        return;
+      }
+      e.preventDefault();
+      const btn = e.target.querySelector('[type="submit"]');
+      const data = new FormData(e.target);
+      btn.textContent = 'Versturen…';
+      btn.disabled = true;
+      fetch(e.target.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(r => {
+        if (r.ok) {
+          btn.textContent = 'Verzonden! We nemen snel contact op.';
+          btn.style.background = '#6B9E6B';
+          e.target.reset();
+        } else {
+          btn.textContent = 'Er ging iets mis. Probeer opnieuw.';
+          btn.style.background = '#B85C5C';
+          btn.disabled = false;
+        }
+      }).catch(() => {
+        btn.textContent = 'Verbindingsfout. Probeer opnieuw.';
+        btn.style.background = '#B85C5C';
+        btn.disabled = false;
+      });
+    }
+  </script>
+</body>
+</html>
