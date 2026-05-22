@@ -1231,7 +1231,8 @@
           <div class="form-row">
             <div class="form-group">
               <label for="datum">Wanneer *</label>
-              <input type="date" id="datum" name="datum" required>
+              <input type="date" id="datum" required>
+              <input type="hidden" name="datum" id="datumFormatted">
             </div>
             <div class="form-group">
               <label for="personen">Aantal personen (staand) *</label>
@@ -1276,13 +1277,13 @@
     <h2 class="section-heading reveal reveal-delay-1">Vier maten,<br>allemaal in <em>zandkleur</em></h2>
     <div class="divider reveal reveal-delay-2"></div>
     <p class="section-intro reveal reveal-delay-2">
-      Al onze stretchtenten zijn van het merk African in zandkleur. Onderstaande prijzen zijn vanafprijzen, exclusief bezorgkosten. Bezorgkosten worden bepaald aan de hand van de locatie. Zijwanden met of zonder raam zijn optioneel bij te huren per meter.
+      Al onze stretchtenten zijn in African stijl en zandkleur. Onderstaande prijzen zijn vanafprijzen, exclusief bezorgkosten. Bezorgkosten worden bepaald aan de hand van de locatie. Zijwanden met of zonder raam zijn optioneel bij te huren per meter.
     </p>
 
     <div class="prijzen-grid">
       <div class="prijs-card reveal">
         <div class="prijs-card-maat">6 × 7,5 m</div>
-        <div class="prijs-card-label">African Zand · 45 m²</div>
+        <div class="prijs-card-label">African stijl · 45 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
           <span>Capaciteit</span>
@@ -1297,7 +1298,7 @@
 
       <div class="prijs-card reveal reveal-delay-1">
         <div class="prijs-card-maat">6 × 10 m</div>
-        <div class="prijs-card-label">African Zand · 60 m²</div>
+        <div class="prijs-card-label">African stijl · 60 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
           <span>Capaciteit</span>
@@ -1312,7 +1313,7 @@
 
       <div class="prijs-card reveal reveal-delay-2">
         <div class="prijs-card-maat">7,5 × 10 m</div>
-        <div class="prijs-card-label">African Zand · 75 m²</div>
+        <div class="prijs-card-label">African stijl · 75 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
           <span>Capaciteit</span>
@@ -1327,7 +1328,7 @@
 
       <div class="prijs-card reveal reveal-delay-3">
         <div class="prijs-card-maat">9 × 12 m</div>
-        <div class="prijs-card-label">African Zand · 108 m²</div>
+        <div class="prijs-card-label">African stijl · 108 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
           <span>Capaciteit</span>
@@ -1563,6 +1564,11 @@
 
     /* ── Form ─── */
     function handleSubmit(e) {
+      const raw = document.getElementById('datum').value;
+      if (raw) {
+        const [y, m, d] = raw.split('-');
+        document.getElementById('datumFormatted').value = `${d}-${m}-${y}`;
+      }
       const formId = e.target.action.includes('JOUW_FORM_ID');
       if (formId) {
         e.preventDefault();
