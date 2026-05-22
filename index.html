@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pointz Stretchtent | Maatwerk stretchtenten</title>
+  <title>Pointz Stretchtent | Stretchtenten huren in heel Nederland</title>
 
   <script>const _s=new URLSearchParams(location.search).get('s');if(_s)document.addEventListener('DOMContentLoaded',()=>window.scrollTo(0,+_s));</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -452,10 +452,11 @@
     }
 
     .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       gap: 1rem;
     }
+
+    .form-row .form-group { flex: 1; }
 
     @media (max-width: 540px) {
       .form-row { grid-template-columns: 1fr; }
@@ -910,6 +911,161 @@
       color: rgba(232,216,184,0.35);
     }
 
+    /* ── ONS VERHAAL ────────────────────────────────────────── */
+    .verhaal-section {
+      background: var(--wit);
+    }
+
+    .verhaal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-l);
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .verhaal-grid { grid-template-columns: 1fr; }
+    }
+
+    .verhaal-quote {
+      font-family: 'Caladea', serif;
+      font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--bruin-mid);
+      margin-bottom: 1.5rem;
+      padding-left: 1.25rem;
+      border-left: 3px solid var(--goud);
+    }
+
+    .verhaal-body {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--tekst-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .verhaal-foto-col {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+    }
+
+    .verhaal-foto-groot {
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .verhaal-foto-groot img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.9) brightness(0.95);
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .verhaal-foto-groot:hover img { transform: scale(1.03); }
+
+    .verhaal-foto-groot::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(44,26,14,0.45) 0%, transparent 60%);
+    }
+
+    .verhaal-foto-klein {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .verhaal-foto-klein img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.88) brightness(0.92);
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .verhaal-foto-klein:hover img { transform: scale(1.04); }
+
+    /* ── VIDEO THUMBNAIL ────────────────────────────────────── */
+    .video-thumb {
+      position: relative;
+      width: 360px;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    }
+
+    .video-thumb:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.35);
+    }
+
+    .video-thumb img {
+      width: 100%;
+      display: block;
+      filter: brightness(0.82);
+      transition: filter 0.3s ease;
+    }
+
+    .video-thumb:hover img { filter: brightness(0.65); }
+
+    .video-play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--goud);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease;
+    }
+
+    .video-thumb:hover .video-play-btn {
+      transform: translate(-50%, -50%) scale(1.12);
+      background: var(--goud-licht);
+    }
+
+    .video-play-btn svg { margin-left: 3px; }
+
+    .video-thumb-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.6rem 1rem;
+      background: linear-gradient(to top, rgba(44,26,14,0.85), transparent);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--zand-warm);
+      letter-spacing: 0.02em;
+    }
+
+    /* Video lightbox */
+    .video-lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 900;
+      background: rgba(10,5,2,0.96);
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+
+    .video-lightbox.open { display: flex; }
+
+    .video-lightbox-inner {
+      width: 100%;
+      max-width: 900px;
+      aspect-ratio: 16/9;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+
     /* ── SCROLL ANIMATIONS ──────────────────────────────────── */
     .reveal {
       opacity: 0;
@@ -936,9 +1092,10 @@
       <img src="/thema/Logo%20Pointz.png" alt="Pointz Stretchtent" class="nav-logo">
     </a>
     <ul class="nav-links">
-      <li><a href="#contact">Offerte aanvragen</a></li>
+      <li><a href="#verhaal">Ons verhaal</a></li>
       <li><a href="#maten">Tentmaten</a></li>
       <li><a href="#galerij">Galerij</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-cta-wrap">
       <a href="#contact" class="nav-cta">Direct contact</a>
@@ -959,10 +1116,10 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <p class="hero-tag">Maatwerk stretchtenten</p>
-      <h1>Jouw feest,<br><em>onze tent.</em></h1>
+      <p class="hero-tag">Stretchtenten · Huren in heel Nederland</p>
+      <h1>Warm, gezellig<br><em>en geborgen.</em></h1>
       <p class="hero-sub">
-        Van intieme bruiloften tot grote feesten — Pointz levert prachtige stretchtenten op elke locatie. Warm, authentiek en volledig op maat.
+        Schuilen tegen de regen of juist de felle zon — onder een stretchtent voel jij je lekker en veilig. Voor bruiloften, feestjes en elk evenement dat er toe doet.
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">
@@ -987,13 +1144,41 @@
   <!-- ── USP STRIP ────────────────────────────────────────── -->
   <div class="usp-strip">
     <ul class="usp-list">
-      <li>Op maat voor elk evenement</li>
-      <li>Meer dan 15 jaar ervaring</li>
-      <li>Diverse tentmaten beschikbaar</li>
-      <li>Montage inclusief</li>
+      <li>Bruiloften &amp; feestjes</li>
+      <li>Bedrijfsuitjes &amp; evenementen</li>
+      <li>Bescherming tegen regen én zon</li>
+      <li><a href="#maten" style="color: inherit; text-decoration: none;">Montage &amp; demontage begeleiding*</a></li>
       <li>Heel Nederland</li>
     </ul>
   </div>
+
+  <!-- ── ONS VERHAAL ───────────────────────────────────────── -->
+  <section class="section verhaal-section" id="verhaal">
+    <div class="verhaal-grid">
+      <div class="verhaal-tekst reveal">
+        <p class="section-label">Ons verhaal</p>
+        <h2 class="section-heading">Een liefde voor<br><em>de katoenen tent</em></h2>
+        <div class="divider"></div>
+        <p class="verhaal-quote">
+          "Mijn leven lang voel ik liefde voor een katoenen tent. Het mooiste moment is elke keer weer wanneer je de baleinen van de tent aantrekt, de tent zijn prachtige vorm krijgt. Je liefdevol beschermt tegen regen en zon en waaronder jij je lekker en geborgen voelt…"
+        </p>
+        <p class="verhaal-body">
+          We bieden verschillende maten stretchtenten aan voor een mooi onderkomen bij feesten, bruiloften en evenementen. Wij zijn vaak als eerste op de locatie — de tent en het terrein worden ingericht, en we gaan ook als laatste weer weg. Dan kijken we met elkaar terug op het feest en delen we de mooie momenten.
+        </p>
+        <p class="verhaal-body">
+          De stretchtent is van origine Zuid-Afrikaans: tropisch, zwoel en gezellig. De zandkleurige tent past prachtig bij elk evenement waar gezelligheid, vrolijkheid en geborgenheid centraal staan.
+        </p>
+        <a href="#contact" class="btn-primary" style="margin-top: 2rem; display: inline-flex;">
+          Neem contact op
+        </a>
+      </div>
+      <div class="verhaal-foto-col reveal reveal-delay-2">
+        <div class="verhaal-foto-groot">
+          <img src="/fotos/307011860_647514616721386_1163486095939039505_n.jpg" alt="Stretchtent bij een bruiloft">
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ── CONTACT ───────────────────────────────────────────── -->
   <section class="section contact-section" id="contact">
@@ -1003,7 +1188,7 @@
         <h2 class="section-heading reveal reveal-delay-1">Offerte aanvragen<br>is <em>simpel</em></h2>
         <div class="divider reveal reveal-delay-2"></div>
         <p class="section-intro reveal reveal-delay-2">
-          Vul het formulier in en wij nemen snel contact op. Of bel ons direct — we helpen je graag met het vinden van de perfecte tent voor jouw dag.
+          Neem gerust contact op — dan kijken we samen welke tent het best bij jullie past. Of bel ons direct.
         </p>
 
         <div class="contact-detail reveal reveal-delay-3">
@@ -1022,8 +1207,7 @@
           </div>
           <div class="contact-detail-text">
             <strong>E-mail</strong>
-            <a href="mailto:info@stretch-tent.nl">info@stretch-tent.nl</a><br>
-            <a href="mailto:paul.wessels@stretch-tents.nl">paul.wessels@stretch-tents.nl</a>
+            <a href="mailto:paul.wessels@pointz.nl">paul.wessels@pointz.nl</a>
           </div>
         </div>
 
@@ -1039,47 +1223,42 @@
       </div>
 
       <div class="form-card reveal reveal-delay-1">
-        <form id="contactForm" action="https://formspree.io/f/JOUW_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="naam">Naam *</label>
-              <input type="text" id="naam" name="naam" placeholder="Jan de Vries" required autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label for="email">E-mailadres *</label>
-              <input type="email" id="email" name="email" placeholder="jan@voorbeeld.nl" required autocomplete="email">
-            </div>
+        <form id="contactForm" action="https://formspree.io/f/xdajzoql" method="POST" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="naam">Naam *</label>
+            <input type="text" id="naam" name="naam" placeholder="Jan de Vries" required autocomplete="name">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="telefoon">Telefoonnummer</label>
-              <input type="tel" id="telefoon" name="telefoon" placeholder="06 12 34 56 78" autocomplete="tel">
+              <label for="datum">Wanneer *</label>
+              <input type="date" id="datum" name="datum" required>
             </div>
             <div class="form-group">
-              <label for="datum">Gewenste datum</label>
-              <input type="date" id="datum" name="datum">
+              <label for="personen">Aantal personen (staand) *</label>
+              <input type="number" id="personen" name="personen" placeholder="bv. 80" min="10" max="1000" required>
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group">
-              <label for="personen">Aantal personen</label>
-              <input type="number" id="personen" name="personen" placeholder="bv. 80" min="10" max="1000">
+            <div class="form-group" style="flex: 2;">
+              <label for="straat">Straat *</label>
+              <input type="text" id="straat" name="straat" placeholder="Kerkstraat" required autocomplete="street-address">
             </div>
-            <div class="form-group">
-              <label for="type">Type evenement</label>
-              <select id="type" name="type">
-                <option value="">Selecteer type</option>
-                <option value="bruiloft">Bruiloft</option>
-                <option value="verjaardag">Verjaardag / jubileum</option>
-                <option value="bedrijf">Bedrijfsevenement</option>
-                <option value="festival">Festival / markt</option>
-                <option value="anders">Anders</option>
-              </select>
+            <div class="form-group" style="flex: 1;">
+              <label for="huisnummer">Huisnummer *</label>
+              <input type="text" id="huisnummer" name="huisnummer" placeholder="12a" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="bericht">Aanvullende informatie</label>
-            <textarea id="bericht" name="bericht" placeholder="Vertel ons meer over je evenement, locatie of wensen…"></textarea>
+            <label for="stad">Stad *</label>
+            <input type="text" id="stad" name="stad" placeholder="Amsterdam" required autocomplete="address-level2">
+          </div>
+          <div class="form-group">
+            <label for="telefoon">Telefoonnummer <span style="font-weight:300; text-transform: none; letter-spacing: 0;">(optioneel)</span></label>
+            <input type="tel" id="telefoon" name="telefoon" placeholder="06 12 34 56 78" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="bericht">Overige wensen of vragen</label>
+            <textarea id="bericht" name="bericht" placeholder="Vertel ons meer over je evenement of wensen…"></textarea>
           </div>
           <button type="submit" class="btn-primary form-submit">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -1093,132 +1272,99 @@
 
   <!-- ── MATEN & HUURPRIJZEN ───────────────────────────────── -->
   <section class="section prijzen-section" id="maten">
-    <p class="section-label reveal">Tentmaten & huurprijzen</p>
-    <h2 class="section-heading reveal reveal-delay-1">De juiste tent<br>voor elk <em>evenement</em></h2>
+    <p class="section-label reveal">Tentmaten & beschikbaarheid</p>
+    <h2 class="section-heading reveal reveal-delay-1">Vier maten,<br>allemaal in <em>zandkleur</em></h2>
     <div class="divider reveal reveal-delay-2"></div>
     <p class="section-intro reveal reveal-delay-2">
-      Onze stretchtenten zijn beschikbaar in diverse maten. Hieronder vind je een overzicht met indicatieprijzen. De exacte prijs hangt af van de locatie, het seizoen en de gewenste opstelling.
+      Al onze stretchtenten zijn van het merk African in zandkleur. Onderstaande prijzen zijn vanafprijzen, exclusief bezorgkosten. Bezorgkosten worden bepaald aan de hand van de locatie. Zijwanden met of zonder raam zijn optioneel bij te huren per meter.
     </p>
 
     <div class="prijzen-grid">
       <div class="prijs-card reveal">
-        <div class="prijs-card-maat">5 × 8 m</div>
-        <div class="prijs-card-label">Kleine opstelling</div>
+        <div class="prijs-card-maat">6 × 7,5 m</div>
+        <div class="prijs-card-label">African Zand · 45 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
-          <span>Oppervlakte</span>
-          <strong>40 m²</strong>
+          <span>Capaciteit</span>
+          <strong>ca. 100 personen</strong>
         </div>
         <div class="prijs-card-detail">
-          <span>Max. personen (staand)</span>
-          <strong>ca. 40</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Max. personen (zittend)</span>
-          <strong>ca. 25</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Indicatieprijs</span>
-          <strong>Vanaf €650</strong>
+          <span>Huurprijs</span>
+          <strong>Vanaf € 765</strong>
         </div>
         <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
       </div>
 
       <div class="prijs-card reveal reveal-delay-1">
-        <div class="prijs-card-maat">6 × 12 m</div>
-        <div class="prijs-card-label">Middelgrote opstelling</div>
+        <div class="prijs-card-maat">6 × 10 m</div>
+        <div class="prijs-card-label">African Zand · 60 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
-          <span>Oppervlakte</span>
-          <strong>72 m²</strong>
+          <span>Capaciteit</span>
+          <strong>ca. 150 personen</strong>
         </div>
         <div class="prijs-card-detail">
-          <span>Max. personen (staand)</span>
-          <strong>ca. 80</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Max. personen (zittend)</span>
-          <strong>ca. 50</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Indicatieprijs</span>
-          <strong>Vanaf €1.050</strong>
+          <span>Huurprijs</span>
+          <strong>Vanaf € 1.020</strong>
         </div>
         <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
       </div>
 
       <div class="prijs-card reveal reveal-delay-2">
-        <div class="prijs-card-maat">8 × 15 m</div>
-        <div class="prijs-card-label">Grote opstelling</div>
+        <div class="prijs-card-maat">7,5 × 10 m</div>
+        <div class="prijs-card-label">African Zand · 75 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
-          <span>Oppervlakte</span>
-          <strong>120 m²</strong>
+          <span>Capaciteit</span>
+          <strong>ca. 150 personen</strong>
         </div>
         <div class="prijs-card-detail">
-          <span>Max. personen (staand)</span>
-          <strong>ca. 140</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Max. personen (zittend)</span>
-          <strong>ca. 90</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Indicatieprijs</span>
-          <strong>Vanaf €1.650</strong>
+          <span>Huurprijs</span>
+          <strong>Vanaf € 1.275</strong>
         </div>
         <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
       </div>
 
       <div class="prijs-card reveal reveal-delay-3">
-        <div class="prijs-card-maat">10 × 20 m</div>
-        <div class="prijs-card-label">Extra grote opstelling</div>
+        <div class="prijs-card-maat">9 × 12 m</div>
+        <div class="prijs-card-label">African Zand · 108 m²</div>
         <div class="prijs-card-divider"></div>
         <div class="prijs-card-detail">
-          <span>Oppervlakte</span>
-          <strong>200 m²</strong>
+          <span>Capaciteit</span>
+          <strong>ca. 200 personen</strong>
         </div>
         <div class="prijs-card-detail">
-          <span>Max. personen (staand)</span>
-          <strong>ca. 230</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Max. personen (zittend)</span>
-          <strong>ca. 150</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Indicatieprijs</span>
-          <strong>Op aanvraag</strong>
+          <span>Huurprijs</span>
+          <strong>Vanaf € 1.836</strong>
         </div>
         <a href="#contact" class="prijs-card-cta">Offerte aanvragen →</a>
-      </div>
-
-      <div class="prijs-card reveal reveal-delay-4" style="grid-column: span 1;">
-        <div class="prijs-card-maat">Maatwerk</div>
-        <div class="prijs-card-label">Volledig op maat</div>
-        <div class="prijs-card-divider"></div>
-        <div class="prijs-card-detail">
-          <span>Combinaties mogelijk</span>
-          <strong>Ja</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Bijzondere locaties</span>
-          <strong>Ja</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Accessoires huurbaar</span>
-          <strong>Ja</strong>
-        </div>
-        <div class="prijs-card-detail">
-          <span>Indicatieprijs</span>
-          <strong>Op aanvraag</strong>
-        </div>
-        <a href="#contact" class="prijs-card-cta">Neem contact op →</a>
       </div>
     </div>
 
     <div class="prijs-opmerking reveal">
-      * Alle prijzen zijn indicatief en excl. btw. De definitieve prijs is afhankelijk van locatie, datum, benodigde opstelling en eventuele extra's. Vraag vrijblijvend een offerte aan voor een exacte prijsopgave.
+      <strong style="color: var(--goud-licht); display: block; margin-bottom: 0.5rem;">* Opzetten & afspraken</strong>
+      Het opzetten duurt circa 4 uur en gebeurt de dag vóór het evenement. In overleg kan dit ook op de ochtend van het evenement. Pointz gaat ervan uit dat de aanvrager meehelpt onder begeleiding — dit houdt de prijs laag. Kan dit niet, dan rekenen we €275 extra voor arbeid. Alle prijzen zijn vanafprijzen, excl. btw en excl. bezorgkosten. Bezorgkosten worden bepaald aan de hand van de locatie.
+    </div>
+
+    <div class="video-wrap reveal" style="margin-top: 3rem;">
+      <p class="section-label" style="margin-bottom: 1rem;">Zo werkt het opzetten</p>
+      <div class="video-thumb" id="videoThumb" onclick="openVideo()" title="Bekijk de instructievideo">
+        <img src="https://img.youtube.com/vi/kfLeKL4Gl-A/maxresdefault.jpg" alt="Instructievideo stretchtent opzetten">
+        <div class="video-play-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--bruin)" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="video-thumb-label">Bekijk hoe we de tent opzetten</div>
+      </div>
+    </div>
+
+    <!-- Video lightbox -->
+    <div class="video-lightbox" id="videoLightbox" onclick="closeVideo(event)">
+      <button class="lightbox-close" onclick="closeVideo()" aria-label="Sluiten">×</button>
+      <div class="video-lightbox-inner">
+        <iframe id="videoIframe" src="" title="Instructievideo: stretchtent opzetten" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen style="width:100%;height:100%;"></iframe>
+      </div>
     </div>
   </section>
 
@@ -1292,6 +1438,7 @@
         <p class="footer-col-title">Navigatie</p>
         <ul class="footer-links">
           <li><a href="#home">Home</a></li>
+          <li><a href="#verhaal">Ons verhaal</a></li>
           <li><a href="#contact">Offerte aanvragen</a></li>
           <li><a href="#maten">Tentmaten & prijzen</a></li>
           <li><a href="#galerij">Galerij</a></li>
@@ -1301,14 +1448,13 @@
         <p class="footer-col-title">Contact</p>
         <ul class="footer-links">
           <li><a href="tel:0654676950">06 54 67 69 50</a></li>
-          <li><a href="mailto:info@stretch-tent.nl">info@stretch-tent.nl</a></li>
-          <li><a href="mailto:paul.wessels@stretch-tents.nl">paul.wessels@stretch-tents.nl</a></li>
+          <li><a href="mailto:paul.wessels@pointz.nl">paul.wessels@pointz.nl</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Pointz Stretchtent · Alle rechten voorbehouden</span>
-      <span>KvK op aanvraag</span>
+      <span>© 2026 Pointz Stretchtent · Alle rechten voorbehouden</span>
+      <span>KvK 24429524 · IBAN NL31 RABO 0142 3855 06</span>
     </div>
   </footer>
 
@@ -1400,6 +1546,21 @@
       if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
     });
 
+    /* ── Video ─── */
+    function openVideo() {
+      document.getElementById('videoIframe').src = 'https://www.youtube.com/embed/kfLeKL4Gl-A?autoplay=1';
+      document.getElementById('videoLightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideo(e) {
+      if (!e || e.target === document.getElementById('videoLightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('videoIframe').src = '';
+        document.getElementById('videoLightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
     /* ── Form ─── */
     function handleSubmit(e) {
       const formId = e.target.action.includes('JOUW_FORM_ID');
@@ -1433,6 +1594,343 @@
         btn.disabled = false;
       });
     }
+  </script>
+
+  <!-- ── DYNAMIC ISLAND TOC ──────────────────────────────── -->
+  <style>
+    .di-backdrop {
+      position: fixed; inset: 0; z-index: 8000;
+      background: rgba(0,0,0,0.22);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .di-backdrop.open { opacity: 1; pointer-events: all; }
+
+    .di-island {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      z-index: 9000;
+      width: 280px;
+      height: 52px;
+      border-radius: 26px;
+      background: var(--bruin);
+      border: 1px solid rgba(201,160,70,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      transition:
+        width 0.5s cubic-bezier(0.22,1,0.36,1),
+        height 0.5s cubic-bezier(0.22,1,0.36,1),
+        border-radius 0.5s cubic-bezier(0.22,1,0.36,1),
+        transform 0.6s cubic-bezier(0.22,1,0.36,1),
+        opacity 0.5s ease;
+    }
+
+    .di-island.mounted {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .di-island.expanded {
+      width: 320px;
+      height: 380px;
+      border-radius: 22px;
+      cursor: default;
+    }
+
+    /* Pill (collapsed) */
+    .di-pill {
+      position: absolute; inset: 0;
+      display: flex; align-items: center;
+      gap: 0.875rem;
+      padding: 0 1.1rem;
+      transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .di-island.expanded .di-pill {
+      opacity: 0;
+      filter: blur(4px);
+      pointer-events: none;
+    }
+
+    .di-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--goud);
+      flex-shrink: 0;
+    }
+
+    .di-current {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      height: 1.2em;
+    }
+
+    .di-current-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--zand-warm);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: absolute;
+      width: 100%;
+      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .di-current-text.exit {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+
+    .di-current-text.enter {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    /* Progress circle */
+    .di-progress-svg { flex-shrink: 0; transform: rotate(-90deg); }
+    .di-progress-bg   { fill: none; stroke: rgba(201,160,70,0.15); stroke-width: 2.5; }
+    .di-progress-fill {
+      fill: none;
+      stroke: var(--goud);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.15s ease-out;
+    }
+
+    /* Expanded menu */
+    .di-menu {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+      transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+    }
+
+    .di-island.expanded .di-menu {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: all;
+      transition: opacity 0.3s ease 0.12s, transform 0.3s ease 0.12s;
+    }
+
+    .di-menu-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .di-menu-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(232,216,184,0.45);
+    }
+
+    .di-close {
+      background: none; border: none;
+      color: rgba(232,216,184,0.45);
+      cursor: pointer;
+      display: flex; align-items: center;
+      padding: 2px;
+      transition: color 0.2s ease;
+      line-height: 1;
+      font-size: 1.25rem;
+    }
+
+    .di-close:hover { color: var(--goud-licht); }
+
+    .di-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 0.75rem 1rem;
+      scrollbar-width: none;
+    }
+    .di-items::-webkit-scrollbar { display: none; }
+
+    .di-item {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%;
+      background: none; border: none;
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: rgba(232,216,184,0.4);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      gap: 0.5rem;
+    }
+
+    .di-item:hover {
+      background: rgba(255,255,255,0.05);
+      color: rgba(232,216,184,0.85);
+      transform: translateX(3px);
+    }
+
+    .di-item.active {
+      background: rgba(201,160,70,0.12);
+      color: var(--zand-warm);
+      font-weight: 500;
+    }
+
+    .di-item-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--goud);
+      flex-shrink: 0;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
+    }
+
+    .di-item.active .di-item-dot {
+      transform: scale(1);
+      opacity: 1;
+    }
+  </style>
+
+  <!-- Island HTML -->
+  <div class="di-backdrop" id="diBackdrop"></div>
+  <div class="di-island" id="diIsland" role="navigation" aria-label="Paginanavigatie">
+
+    <!-- Collapsed pill -->
+    <div class="di-pill" id="diPill">
+      <span class="di-dot"></span>
+      <div class="di-current">
+        <span class="di-current-text" id="diCurrentText">Welkom</span>
+      </div>
+      <svg class="di-progress-svg" width="24" height="24" viewBox="0 0 24 24">
+        <circle class="di-progress-bg" cx="12" cy="12" r="10.75"/>
+        <circle class="di-progress-fill" id="diProgressFill"
+          cx="12" cy="12" r="10.75"
+          stroke-dasharray="67.54"
+          stroke-dashoffset="67.54"/>
+      </svg>
+    </div>
+
+    <!-- Expanded menu -->
+    <div class="di-menu" id="diMenu">
+      <div class="di-menu-header">
+        <span class="di-menu-label">Op deze pagina</span>
+        <button class="di-close" id="diClose" aria-label="Sluit menu">×</button>
+      </div>
+      <div class="di-items" id="diItems"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const sections = [
+        { id: 'home',    label: 'Home' },
+        { id: 'verhaal', label: 'Ons verhaal' },
+        { id: 'contact', label: 'Offerte aanvragen' },
+        { id: 'maten',   label: 'Tentmaten & prijzen' },
+        { id: 'galerij', label: 'Galerij' },
+      ];
+
+      const island   = document.getElementById('diIsland');
+      const backdrop = document.getElementById('diBackdrop');
+      const diClose  = document.getElementById('diClose');
+      const diItems  = document.getElementById('diItems');
+      const currentText = document.getElementById('diCurrentText');
+      const progressFill = document.getElementById('diProgressFill');
+
+      const CIRCUMFERENCE = 67.54;
+      let isExpanded = false;
+      let activeId = 'home';
+
+      /* Build TOC items */
+      sections.forEach(s => {
+        const btn = document.createElement('button');
+        btn.className = 'di-item';
+        btn.dataset.id = s.id;
+        btn.innerHTML = `<span>${s.label}</span><span class="di-item-dot"></span>`;
+        btn.addEventListener('click', () => {
+          const el = document.getElementById(s.id);
+          if (el) {
+            const y = el.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+          collapse();
+        });
+        diItems.appendChild(btn);
+      });
+
+      function setActive(id) {
+        if (id === activeId) return;
+        activeId = id;
+        const section = sections.find(s => s.id === id);
+        if (!section) return;
+
+        /* Animate text swap */
+        currentText.classList.add('exit');
+        setTimeout(() => {
+          currentText.textContent = section.label;
+          currentText.classList.remove('exit');
+          currentText.classList.add('enter');
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => currentText.classList.remove('enter'));
+          });
+        }, 200);
+
+        /* Update dots */
+        document.querySelectorAll('.di-item').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.id === id);
+        });
+      }
+
+      function updateProgress() {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = total > 0 ? Math.min(100, Math.max(0, window.scrollY / total * 100)) : 0;
+        progressFill.style.strokeDashoffset = CIRCUMFERENCE - (pct / 100) * CIRCUMFERENCE;
+      }
+
+      function scrollSpy() {
+        let current = sections[0].id;
+        sections.forEach(s => {
+          const el = document.getElementById(s.id);
+          if (el && el.getBoundingClientRect().top <= 120) current = s.id;
+        });
+        setActive(current);
+        updateProgress();
+      }
+
+      function expand() {
+        isExpanded = true;
+        island.classList.add('expanded');
+        backdrop.classList.add('open');
+      }
+
+      function collapse() {
+        isExpanded = false;
+        island.classList.remove('expanded');
+        backdrop.classList.remove('open');
+      }
+
+      island.addEventListener('click', () => { if (!isExpanded) expand(); });
+      diClose.addEventListener('click', e => { e.stopPropagation(); collapse(); });
+      backdrop.addEventListener('click', collapse);
+
+      window.addEventListener('scroll', scrollSpy, { passive: true });
+      scrollSpy();
+
+      /* Mount with delay for entrance animation */
+      setTimeout(() => island.classList.add('mounted'), 800);
+    })();
   </script>
 </body>
 </html>
