@@ -1755,6 +1755,14 @@
     const strip = document.getElementById('galerijStrip');
     const dots  = document.querySelectorAll('.galerij-dot');
 
+    /* Clone items voor oneindige loop */
+    const origItems = [...strip.querySelectorAll('.galerij-item')];
+    const totalOrig  = origItems.length;
+    origItems.forEach(item => {
+      const clone = item.cloneNode(true);
+      strip.appendChild(clone);
+    });
+
     /* Arrow scroll */
     const SCROLL_AMT = 420;
     document.getElementById('arrowLeft').addEventListener('click', () => {
@@ -1764,24 +1772,34 @@
       strip.scrollBy({ left: SCROLL_AMT, behavior: 'smooth' });
     });
 
-    /* Dot sync */
-    const items = strip.querySelectorAll('.galerij-item');
+    /* Dot sync met modulo voor clones */
     const itemObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          const idx = [...items].indexOf(e.target);
+          const allItems = [...strip.querySelectorAll('.galerij-item')];
+          const idx = allItems.indexOf(e.target) % totalOrig;
           dots.forEach((d, i) => d.classList.toggle('active', i === idx));
         }
       });
     }, { root: strip, threshold: 0.55 });
-    items.forEach(el => itemObserver.observe(el));
+    strip.querySelectorAll('.galerij-item').forEach(el => itemObserver.observe(el));
 
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
         const idx = +dot.dataset.idx;
-        items[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        origItems[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       });
     });
+
+    /* Oneindige loop — spring stil terug als einde bereikt */
+    strip.addEventListener('scroll', () => {
+      const half = strip.scrollWidth / 2;
+      if (strip.scrollLeft >= half - 80) {
+        strip.style.scrollSnapType = 'none';
+        strip.scrollLeft -= half;
+        setTimeout(() => { strip.style.scrollSnapType = ''; }, 30);
+      }
+    }, { passive: true });
 
     /* Drag to scroll (mouse) */
     let isDown = false, startX = 0, scrollLeft = 0;
