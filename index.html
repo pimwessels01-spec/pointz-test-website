@@ -73,7 +73,7 @@
     }
 
     .nav-logo {
-      height: 44px;
+      height: 52px;
       display: block;
       filter: brightness(1.05);
       justify-self: start;
@@ -156,9 +156,35 @@
 
     @media (max-width: 820px) {
       .nav { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 76px; left: 0; right: 0;
+        background: rgba(44, 26, 14, 0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 1rem 0 2rem;
+        border-bottom: 1px solid rgba(201,160,70,0.2);
+        z-index: 499;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links a {
+        display: block;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-bottom: none;
+      }
       .nav-hamburger { display: flex; }
       .nav-cta-wrap { display: none; }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     }
 
     /* ── HERO ───────────────────────────────────────────────── */
@@ -1089,7 +1115,7 @@
   <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav class="nav">
     <a href="#home" aria-label="Pointz Stretchtent home">
-      <img src="/thema/Logo%20Pointz.png" alt="Pointz Stretchtent" class="nav-logo">
+      <img src="/thema/logo-wit.svg" alt="Pointz Stretchtent" class="nav-logo">
     </a>
     <ul class="nav-links">
       <li><a href="#verhaal">Ons verhaal</a></li>
@@ -1119,7 +1145,7 @@
       <p class="hero-tag">Stretchtenten · Huren in heel Nederland</p>
       <h1>Warm, gezellig<br><em>en geborgen.</em></h1>
       <p class="hero-sub">
-        Schuilen tegen de regen of juist de felle zon — onder een stretchtent voel jij je lekker en veilig. Voor bruiloften, feestjes en elk evenement dat er toe doet.
+        Schuilen tegen de regen of juist de felle zon: onder een stretchtent voel jij je lekker en veilig. Voor bruiloften, feestjes en elk evenement dat ertoe doet.
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">
@@ -1160,10 +1186,10 @@
         <h2 class="section-heading">Een liefde voor<br><em>de katoenen tent</em></h2>
         <div class="divider"></div>
         <p class="verhaal-quote">
-          "Mijn leven lang voel ik liefde voor een katoenen tent. Het mooiste moment is elke keer weer wanneer je de baleinen van de tent aantrekt, de tent zijn prachtige vorm krijgt. Je liefdevol beschermt tegen regen en zon en waaronder jij je lekker en geborgen voelt…"
+          "Mijn leven lang voel ik liefde voor een katoenen tent. Het mooiste moment is elke keer weer wanneer je de baleinen van de tent aantrekt en de tent zijn prachtige vorm krijgt. Die je liefdevol beschermt tegen regen en zon, en waaronder jij je lekker en geborgen voelt…"
         </p>
         <p class="verhaal-body">
-          We bieden verschillende maten stretchtenten aan voor een mooi onderkomen bij feesten, bruiloften en evenementen. Wij zijn vaak als eerste op de locatie — de tent en het terrein worden ingericht, en we gaan ook als laatste weer weg. Dan kijken we met elkaar terug op het feest en delen we de mooie momenten.
+          We bieden verschillende maten stretchtenten aan voor een mooi onderkomen bij feesten, bruiloften en evenementen. Wij zijn vaak als eerste op de locatie. De tent en het terrein worden ingericht en we gaan ook als laatste weer weg. Dan kijken we met elkaar terug op het feest en delen we de mooie momenten.
         </p>
         <p class="verhaal-body">
           De stretchtent is van origine Zuid-Afrikaans: tropisch, zwoel en gezellig. De zandkleurige tent past prachtig bij elk evenement waar gezelligheid, vrolijkheid en geborgenheid centraal staan.
@@ -1188,7 +1214,7 @@
         <h2 class="section-heading reveal reveal-delay-1">Offerte aanvragen<br>is <em>simpel</em></h2>
         <div class="divider reveal reveal-delay-2"></div>
         <p class="section-intro reveal reveal-delay-2">
-          Neem gerust contact op — dan kijken we samen welke tent het best bij jullie past. Of bel ons direct.
+          Neem gerust contact op. Dan kijken we samen welke tent het best bij jullie past. Of bel ons direct.
         </p>
 
         <div class="contact-detail reveal reveal-delay-3">
@@ -1344,7 +1370,7 @@
 
     <div class="prijs-opmerking reveal">
       <strong style="color: var(--goud-licht); display: block; margin-bottom: 0.5rem;">* Opzetten & afspraken</strong>
-      Het opzetten duurt circa 4 uur en gebeurt de dag vóór het evenement. In overleg kan dit ook op de ochtend van het evenement. Pointz gaat ervan uit dat de aanvrager meehelpt onder begeleiding — dit houdt de prijs laag. Kan dit niet, dan rekenen we €275 extra voor arbeid. Alle prijzen zijn vanafprijzen, excl. btw en excl. bezorgkosten. Bezorgkosten worden bepaald aan de hand van de locatie.
+      Het opzetten duurt circa 2,5 uur en gebeurt de dag vóór het evenement. In overleg kan dit ook op de ochtend van het evenement. Pointz gaat ervan uit dat de aanvrager meehelpt onder begeleiding, wat de prijs laag houdt. Kan dit niet, dan rekenen we €275 extra voor arbeid. Alle prijzen zijn vanafprijzen, excl. btw en excl. bezorgkosten. Bezorgkosten worden bepaald aan de hand van de locatie.
     </div>
 
     <div class="video-wrap reveal" style="margin-top: 3rem;">
@@ -1375,7 +1401,7 @@
     <h2 class="section-heading reveal reveal-delay-1">Tenten in <em>elk</em> setting</h2>
     <div class="divider reveal reveal-delay-2"></div>
     <p class="section-intro reveal reveal-delay-2">
-      Van romantische bruiloften in het bos tot professionele bedrijfsevenementen — sleep of scroll om door de galerij te bladeren.
+      Van romantische bruiloften in het bos tot professionele bedrijfsevenementen. Sleep of scroll om door de galerij te bladeren.
     </p>
 
     <div class="galerij-strip-wrap reveal">
@@ -1400,16 +1426,13 @@
           <img src="/fotos/278378214_541324414007074_8364620911524647632_n.jpg" alt="Stretchtent intiem" loading="lazy">
         </div>
         <div class="galerij-item" onclick="openLightbox(this)">
-          <img src="/fotos/bartimeus%2012.jpg" alt="Stretchtent Bartimeus locatie" loading="lazy">
-        </div>
-        <div class="galerij-item" onclick="openLightbox(this)">
           <img src="/fotos/280660100_561159992023516_335217310516019810_n.jpg" alt="Stretchtent evenement" loading="lazy">
         </div>
         <div class="galerij-item" onclick="openLightbox(this)">
           <img src="/fotos/IMG_2112.JPG" alt="Stretchtent festival" loading="lazy">
         </div>
         <div class="galerij-item" onclick="openLightbox(this)">
-          <img src="/fotos/bartimeus%2014.jpg" alt="Stretchtent locatie" loading="lazy">
+          <img src="/fotos/307011860_647514616721386_1163486095939039505_n.jpg" alt="Stretchtent bruiloft" loading="lazy">
         </div>
       </div>
     </div>
@@ -1422,7 +1445,6 @@
       <button class="galerij-dot" data-idx="4"></button>
       <button class="galerij-dot" data-idx="5"></button>
       <button class="galerij-dot" data-idx="6"></button>
-      <button class="galerij-dot" data-idx="7"></button>
     </div>
   </section>
 
@@ -1430,9 +1452,9 @@
   <footer class="footer">
     <div class="footer-grid">
       <div>
-        <img src="/thema/Logo%20Pointz.png" alt="Pointz Stretchtent" class="footer-logo">
+        <img src="/thema/logo-wit.svg" alt="Pointz Stretchtent" class="footer-logo">
         <p class="footer-desc">
-          Pointz levert maatwerk stretchtenten voor elk type evenement. Warm, authentiek en volledig op maat — in heel Nederland.
+          Pointz verhuurt stretchtenten in African stijl voor elk type evenement. Warm, authentiek en actief in heel Nederland.
         </p>
       </div>
       <div>
@@ -1466,6 +1488,20 @@
   </div>
 
   <script>
+    /* ── Hamburger menu ─── */
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navLinks  = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
     /* ── Scroll reveal ─── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
